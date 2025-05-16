@@ -27,7 +27,9 @@ import com.sentics.compose_news.presentation.onboarding.component.PageIndicator
 import kotlinx.coroutines.launch
 
 @Composable
-fun OnboardingScreen() {
+fun OnboardingScreen(
+    event: (OnboardingEvent) -> Unit
+) {
     val pagerState = rememberPagerState(initialPage = 0, pageCount = { pages.size })
     val buttonState = remember {
         derivedStateOf {
@@ -84,7 +86,7 @@ fun OnboardingScreen() {
                                 pagerState.animateScrollToPage(pagerState.currentPage + 1)
                             }
                         } else {
-                            // navigate
+                            event(OnboardingEvent.SaveAppEntry)
                         }
                     })
             }
