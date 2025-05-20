@@ -37,16 +37,16 @@ fun OnboardingPage(
             contentDescription = null,
             contentScale = ContentScale.Crop
         )
-        Spacer(modifier = Modifier.height(Dimen.MediumPadding1))
+        Spacer(modifier = Modifier.height(Dimen.PaddingMedium1))
         Text(
             text = page.title,
-            modifier = Modifier.padding(horizontal = Dimen.MediumPadding2),
+            modifier = Modifier.padding(horizontal = Dimen.PaddingMedium2),
             style = MaterialTheme.typography.displaySmall.copy(fontWeight = FontWeight.Bold),
             color = colorResource(R.color.display_small)
         )
         Text(
             text = page.description,
-            modifier = Modifier.padding(horizontal = Dimen.MediumPadding2),
+            modifier = Modifier.padding(horizontal = Dimen.PaddingMedium2),
             style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
             color = colorResource(R.color.text_medium)
         )

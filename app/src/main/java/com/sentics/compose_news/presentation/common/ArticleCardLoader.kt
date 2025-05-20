@@ -38,14 +38,14 @@ fun ArticleCardLoader(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(MaterialTheme.typography.bodyMedium.lineHeight.value.dp)
-                    .padding(horizontal = Dimen.MediumPadding1)
+                    .padding(horizontal = Dimen.PaddingMedium1)
                     .shimmerEffect()
             )
             Box(
                 modifier = Modifier
                     .fillMaxWidth(0.5f)
                     .height(MaterialTheme.typography.labelMedium.lineHeight.value.dp)
-                    .padding(horizontal = Dimen.MediumPadding1)
+                    .padding(horizontal = Dimen.PaddingMedium1)
                     .shimmerEffect()
             )
         }

@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -44,7 +45,9 @@ fun ArticleCard(
             modifier = Modifier
                 .size(Dimen.ArticleCardSize)
                 .clip(MaterialTheme.shapes.medium),
-            model = ImageRequest.Builder(context).data(article.urlToImage).build(),
+            model = article.urlToImage,
+            contentScale = ContentScale.Crop,
+            placeholder = painterResource(R.drawable.ic_splash),
             contentDescription = null
         )
         Column(

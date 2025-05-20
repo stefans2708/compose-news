@@ -6,6 +6,9 @@ The code as almost completely the same, and there are a few things I don't reall
 1. Presentation
    - Missing view-model for the Onboarding Screen
    - The page should be the state upon which the UI should be created
+   - Remove usage of `composed` block for shimmer and maybe other custom modifiers since it is no longer recommended approach
+   
+   - Why is `Box` required in the search bar composable?
 
 2. Data
    - The `Context` variable in the LocalUserManagerImpl which is in the Data layer
