@@ -1,4 +1,4 @@
-package com.sentics.compose_news.domain.usecase
+package com.sentics.compose_news.domain.usecase.appentry
 
 import com.sentics.compose_news.domain.user.LocalUserManager
 import kotlinx.coroutines.flow.Flow

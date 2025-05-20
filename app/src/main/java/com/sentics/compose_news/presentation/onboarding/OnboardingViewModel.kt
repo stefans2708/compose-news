@@ -2,7 +2,7 @@ package com.sentics.compose_news.presentation.onboarding
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sentics.compose_news.domain.usecase.SaveAppEntry
+import com.sentics.compose_news.domain.usecase.appentry.SaveAppEntry
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
