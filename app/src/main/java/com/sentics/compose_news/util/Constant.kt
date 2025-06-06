@@ -7,4 +7,5 @@ object Constant {
     const val API_KEY = "542387f5689145dd942a1e67a948c4d7"
     const val BASE_URL = "https://newsapi.org/v2/"
 
+    val NEWS_SOURCES = listOf("bbc-news", "abc-news", "al-jazzera-english")
 }

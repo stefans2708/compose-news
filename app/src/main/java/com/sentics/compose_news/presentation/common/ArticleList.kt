@@ -20,6 +20,7 @@ fun ArticleList(
     onItemClick: (Article) -> Unit
 ) {
     val pageLoadSuccess = handlePagingResult(articles)
+
     if (pageLoadSuccess) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),

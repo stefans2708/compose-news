@@ -62,6 +62,7 @@ fun HomeScreen(
         Spacer(modifier = Modifier.height(Dimen.PaddingMedium1))
 
         SearchBar(
+            modifier = Modifier.padding(horizontal = Dimen.PaddingMedium1),
             text = "",
             readOnly = true,
             onValueChange = {},

@@ -4,15 +4,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.sentics.compose_news.domain.usecase.news.GetNews
+import com.sentics.compose_news.util.Constant
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getNews: GetNews
+    getNews: GetNews
 ) : ViewModel() {
 
-    val news = getNews(sources = listOf("bbc-news", "abc-news", "al-jazzera-english"))
+    val news = getNews(Constant.NEWS_SOURCES)
         .cachedIn(viewModelScope)
 
 }
