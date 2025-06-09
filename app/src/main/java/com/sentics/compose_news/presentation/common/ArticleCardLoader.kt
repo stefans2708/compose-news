@@ -24,7 +24,7 @@ fun ArticleCardLoader(modifier: Modifier = Modifier) {
     Row(modifier = modifier) {
         Box(
             modifier = Modifier
-                .size(Dimen.ArticleCardSize)
+                .size(Dimen.ImageItem)
                 .clip(MaterialTheme.shapes.medium)
                 .shimmerEffect()
         )
@@ -32,7 +32,7 @@ fun ArticleCardLoader(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.SpaceAround,
             modifier = Modifier
                 .padding(horizontal = Dimen.PaddingExtraSmall)
-                .height(Dimen.ArticleCardSize)
+                .height(Dimen.ImageItem)
         ) {
             Box(
                 modifier = Modifier

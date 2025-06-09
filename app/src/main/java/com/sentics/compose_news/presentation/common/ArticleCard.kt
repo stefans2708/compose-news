@@ -18,14 +18,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import coil3.compose.AsyncImage
-import coil3.request.ImageRequest
 import com.loc.newsapp.ui.theme.NewsAppTheme
 import com.sentics.compose_news.R
 import com.sentics.compose_news.domain.model.Article
@@ -38,12 +36,10 @@ fun ArticleCard(
     article: Article,
     onClick: () -> Unit
 ) {
-    val context = LocalContext.current
-
     Row(modifier = modifier.clickable { onClick() }) {
         AsyncImage(
             modifier = Modifier
-                .size(Dimen.ArticleCardSize)
+                .size(Dimen.ImageItem)
                 .clip(MaterialTheme.shapes.medium),
             model = article.urlToImage,
             contentScale = ContentScale.Crop,
@@ -54,7 +50,7 @@ fun ArticleCard(
             verticalArrangement = Arrangement.SpaceAround,
             modifier = Modifier
                 .padding(horizontal = Dimen.PaddingExtraSmall)
-                .height(Dimen.ArticleCardSize)
+                .height(Dimen.ImageItem)
         ) {
             Text(
                 text = article.title,
