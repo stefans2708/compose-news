@@ -1,4 +1,4 @@
-package com.sentics.compose_news.domain.usecase
+package com.sentics.compose_news.domain.usecase.news
 
 import androidx.paging.PagingData
 import com.sentics.compose_news.domain.model.Article

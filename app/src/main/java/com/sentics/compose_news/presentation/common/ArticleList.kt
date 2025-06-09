@@ -16,6 +16,25 @@ import com.sentics.compose_news.presentation.Dimen
 @Composable
 fun ArticleList(
     modifier: Modifier = Modifier,
+    articles: List<Article>,
+    onItemClick: (Article) -> Unit
+) {
+    LazyColumn(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(Dimen.PaddingMedium1),
+        contentPadding = PaddingValues(all = Dimen.PaddingExtraSmall2)
+    ) {
+        items(count = articles.size) {
+            articles[it].let { article ->
+                ArticleCard(article = article, onClick = { onItemClick(article) })
+            }
+        }
+    }
+}
+
+@Composable
+fun ArticleList(
+    modifier: Modifier = Modifier,
     articles: LazyPagingItems<Article>,
     onItemClick: (Article) -> Unit
 ) {
@@ -23,7 +42,7 @@ fun ArticleList(
 
     if (pageLoadSuccess) {
         LazyColumn(
-            modifier = Modifier.fillMaxSize(),
+            modifier = modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(Dimen.PaddingMedium1),
             contentPadding = PaddingValues(all = Dimen.PaddingExtraSmall2)
         ) {

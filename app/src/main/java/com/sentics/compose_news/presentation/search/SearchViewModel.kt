@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.sentics.compose_news.domain.usecase.SearchNews
+import com.sentics.compose_news.domain.usecase.news.SearchNews
 import com.sentics.compose_news.util.Constant
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
