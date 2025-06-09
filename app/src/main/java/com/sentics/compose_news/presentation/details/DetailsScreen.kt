@@ -72,7 +72,7 @@ fun DetailsScreen(
                 )
         ) {
             AsyncImage(
-                model = ImageRequest.Builder(context).data(article.urlToImage).build(),
+                model = ImageRequest.Builder(context).data(article.imageUrl).build(),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -112,7 +112,7 @@ private fun DetailsScreenPreview() {
                 source = Source(id = "1", name = "bbc"),
                 title = "Et harum quidem rerum facilis",
                 url = "https://www.google.com/#q=explicari",
-                urlToImage = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Farticles%2F&psig=AOvVaw1rTfaKwxhaGK01LA9xygRy&ust=1749549057962000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPDj9qKI5I0DFQAAAAAdAAAAABAL"
+                imageUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Farticles%2F&psig=AOvVaw1rTfaKwxhaGK01LA9xygRy&ust=1749549057962000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPDj9qKI5I0DFQAAAAAdAAAAABAL"
             ), event = {}) { }
     }
 }

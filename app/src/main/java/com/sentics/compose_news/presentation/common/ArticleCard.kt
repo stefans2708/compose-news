@@ -41,7 +41,7 @@ fun ArticleCard(
             modifier = Modifier
                 .size(Dimen.ImageItem)
                 .clip(MaterialTheme.shapes.medium),
-            model = article.urlToImage,
+            model = article.imageUrl,
             contentScale = ContentScale.Crop,
             placeholder = painterResource(R.drawable.ic_splash),
             contentDescription = null
@@ -97,7 +97,7 @@ private fun ArticleCardPreview() {
                 source = Source(id = "", name = "BBC"),
                 title = "Her traint broke down. Her phone died. And then she met her saver in a",
                 url = "",
-                urlToImage = ""
+                imageUrl = ""
             )
         ) { }
     }

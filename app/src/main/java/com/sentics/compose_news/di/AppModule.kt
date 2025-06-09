@@ -1,7 +1,11 @@
 package com.sentics.compose_news.di
 
 import android.app.Application
+import androidx.room.Room
 import com.sentics.compose_news.BuildConfig
+import com.sentics.compose_news.data.local.NewsDao
+import com.sentics.compose_news.data.local.NewsDatabase
+import com.sentics.compose_news.data.local.NewsTypeConverter
 import com.sentics.compose_news.data.remote.NewsApi
 import com.sentics.compose_news.data.repository.NewsRepositoryImpl
 import com.sentics.compose_news.data.user.LocalUserManagerImpl
@@ -62,4 +66,21 @@ object AppModule {
     @Singleton
     fun provideNewsRepository(newsApi: NewsApi): NewsRepository =
         NewsRepositoryImpl(newsApi)
+
+    @Provides
+    @Singleton
+    fun providesNewsDatabase(application: Application): NewsDatabase =
+        Room.databaseBuilder(
+            context = application,
+            klass = NewsDatabase::class.java,
+            name = Constant.NEWS_DB_NAME
+        )
+            .addTypeConverter(NewsTypeConverter())
+            .fallbackToDestructiveMigration(dropAllTables = true)
+            .build()
+
+    @Provides
+    @Singleton
+    fun provideNewsDao(database: NewsDatabase): NewsDao =
+        database.newsDao
 }

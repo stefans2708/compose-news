@@ -12,3 +12,5 @@ The code as almost completely the same, and there are a few things I don't reall
 
 2. Data
    - The `Context` variable in the LocalUserManagerImpl which is in the Data layer
+   - Add the separate classes for the room instead of using the ones from the domain layer
+   - Add separate DI classes for remote and local data sources 
