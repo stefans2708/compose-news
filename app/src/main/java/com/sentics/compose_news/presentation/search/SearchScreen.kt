@@ -34,7 +34,8 @@ fun SearchScreen(
             text = state.searchQuery,
             readOnly = false,
             onValueChange = { event(SearchEvent.UpdateSearchQuery(it)) },
-            onSearch = { event(SearchEvent.SearchNews) })
+            onSearch = { event(SearchEvent.SearchNews) }
+        )
 
         Spacer(modifier = Modifier.height(Dimen.PaddingMedium1))
 

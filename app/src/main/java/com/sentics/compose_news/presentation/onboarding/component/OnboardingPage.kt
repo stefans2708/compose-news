@@ -21,7 +21,6 @@ import com.loc.newsapp.ui.theme.NewsAppTheme
 import com.sentics.compose_news.R
 import com.sentics.compose_news.presentation.Dimen
 import com.sentics.compose_news.presentation.onboarding.Page
-import com.sentics.compose_news.presentation.onboarding.pages
 
 @Composable
 fun OnboardingPage(
@@ -58,6 +57,13 @@ fun OnboardingPage(
 @Composable
 private fun OnboardingPagePreview() {
     NewsAppTheme {
-        OnboardingPage(page = pages[0])
+        OnboardingPage(page =
+            Page(
+                title = "Lorem Ipsum is simply dummy",
+                description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
+                image = R.drawable.onboarding1,
+                previousButton = "",
+                nextButton = "Next"
+            ))
     }
 }

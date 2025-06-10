@@ -27,7 +27,10 @@ fun NavGraph(
         ) {
             composable(route = Route.OnboardingScreen.route) {
                 val viewModel: OnboardingViewModel = hiltViewModel()
-                OnboardingScreen(viewModel::onEvent)
+                OnboardingScreen(
+                    pages = viewModel.pages,
+                    event = viewModel::onEvent
+                )
             }
         }
 
