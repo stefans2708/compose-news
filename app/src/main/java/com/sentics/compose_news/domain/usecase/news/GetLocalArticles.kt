@@ -1,11 +1,11 @@
 package com.sentics.compose_news.domain.usecase.news
 
-import com.sentics.compose_news.data.local.NewsDao
+import com.sentics.compose_news.domain.repository.NewsRepository
 import javax.inject.Inject
 
 class GetLocalArticles @Inject constructor(
-    private val newsDao: NewsDao
+    private val newsRepository: NewsRepository
 ) {
 
-    operator fun invoke() = newsDao.getArticles()
+    operator fun invoke() = newsRepository.getArticles()
 }

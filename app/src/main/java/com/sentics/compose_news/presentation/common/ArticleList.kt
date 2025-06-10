@@ -19,14 +19,18 @@ fun ArticleList(
     articles: List<Article>,
     onItemClick: (Article) -> Unit
 ) {
-    LazyColumn(
-        modifier = modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(Dimen.PaddingMedium1),
-        contentPadding = PaddingValues(all = Dimen.PaddingExtraSmall2)
-    ) {
-        items(count = articles.size) {
-            articles[it].let { article ->
-                ArticleCard(article = article, onClick = { onItemClick(article) })
+    if (articles.isEmpty()) {
+        EmptyScreen()
+    } else {
+        LazyColumn(
+            modifier = modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(Dimen.PaddingMedium1),
+            contentPadding = PaddingValues(all = Dimen.PaddingExtraSmall2)
+        ) {
+            items(count = articles.size) {
+                articles[it].let { article ->
+                    ArticleCard(article = article, onClick = { onItemClick(article) })
+                }
             }
         }
     }
@@ -78,16 +82,20 @@ fun handlePagingResult(
             false
         }
 
+        articlesPage.itemCount == 0 -> {
+            EmptyScreen()
+            false
+        }
+
         else -> true
     }
-
 }
 
 @Composable
 fun ShimmerEffect(modifier: Modifier = Modifier) {
     Column(verticalArrangement = Arrangement.spacedBy(Dimen.PaddingMedium1)) {
         repeat(10) {
-            ArticleCardLoader(modifier = Modifier.padding(horizontal = Dimen.PaddingMedium1))
+            ArticleCardLoader(modifier = modifier.padding(horizontal = Dimen.PaddingMedium1))
         }
     }
 }
