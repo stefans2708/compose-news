@@ -19,7 +19,7 @@ class DetailsViewModel @Inject constructor(
     private val upsertArticle: UpsertArticle
 ) : ViewModel() {
 
-    var sideEffect by mutableStateOf<String?>(null)
+    var messageSideEffect by mutableStateOf<String?>(null)
         private set
 
     fun onEvent(event: DetailsEvent) {
@@ -29,16 +29,16 @@ class DetailsViewModel @Inject constructor(
                     val article = getArticleByUrl(event.article.url)
                     if (article == null) {
                         upsertArticle(event.article)
-                        sideEffect = "Article Saved"
+                        messageSideEffect = "Article Saved"
                     } else {
                         deleteArticle(event.article)
-                        sideEffect = "Article Deleted"
+                        messageSideEffect = "Article Deleted"
                     }
                 }
             }
 
             is DetailsEvent.RemoveSideEffect -> {
-                sideEffect = null
+                messageSideEffect = null
             }
         }
     }

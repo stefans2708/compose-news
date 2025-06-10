@@ -13,14 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import com.sentics.compose_news.R
+import com.sentics.compose_news.domain.model.Article
 import com.sentics.compose_news.presentation.Dimen
 import com.sentics.compose_news.presentation.common.ArticleList
-import com.sentics.compose_news.presentation.navigation.Route
 
 @Composable
 fun BookmarkScreen(
     state: BookmarkState,
-    navigate: (String) -> Unit
+    navigateToDetails: (Article) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -36,6 +36,6 @@ fun BookmarkScreen(
 
         Spacer(modifier = Modifier.height(Dimen.PaddingMedium1))
 
-        ArticleList(articles = state.articles, onItemClick = { navigate(Route.DetailsScreen.route) })
+        ArticleList(articles = state.articles, onItemClick = navigateToDetails)
     }
 }

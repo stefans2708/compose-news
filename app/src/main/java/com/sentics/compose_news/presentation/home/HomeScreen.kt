@@ -31,7 +31,8 @@ import com.sentics.compose_news.presentation.navigation.Route
 @Composable
 fun HomeScreen(
     articles: LazyPagingItems<Article>,
-    navigate: (String) -> Unit
+    navigateToSearch: () -> Unit,
+    navigateToDetails: (Article) -> Unit,
 ) {
     val titles by remember {
         derivedStateOf {
@@ -66,9 +67,7 @@ fun HomeScreen(
             text = "",
             readOnly = true,
             onValueChange = {},
-            onClick = {
-                navigate(Route.SearchScreen.route)
-            },
+            onClick = navigateToSearch,
             onSearch = {}
         )
 
@@ -89,9 +88,7 @@ fun HomeScreen(
         ArticleList(
             modifier = Modifier.padding(horizontal = Dimen.PaddingMedium1),
             articles = articles,
-            onItemClick = {
-                navigate(Route.DetailsScreen.route)
-            }
+            onItemClick = navigateToDetails
         )
     }
 }

@@ -9,6 +9,8 @@ The code as almost completely the same, and there are a few things I don't reall
    - Remove usage of `composed` block for shimmer and maybe other custom modifiers since it is no longer recommended approach
    - Maybe add presentation/screen package where would home, bookmarks go ...
    - Why is `Box` required in the search bar composable?
+   - Maybe object per bottom bar tab (NewsNavigator file)?
+   - Make `navigateToTab` as an extension function to NavController
 
 2. Data
    - The `Context` variable in the LocalUserManagerImpl which is in the Data layer
