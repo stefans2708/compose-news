@@ -20,4 +20,14 @@ interface NewsApi {
         @Query("sources") sources: String,
         @Query("apiKey") apiKey: String
     ): NewsResponse
+
+    @GET("everything")
+    suspend fun getSpecificNews(
+        @Query("q") searchQuery: String,
+        @Query("page") page: Int,
+        @Query("pageSize") pageSize: Int,
+        @Query("sources") sources: String,
+        @Query("language") language: String,
+        @Query("apiKey") apiKey: String
+    ): NewsResponse
 }
