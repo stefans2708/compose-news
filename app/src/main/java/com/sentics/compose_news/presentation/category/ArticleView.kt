@@ -1,8 +1,11 @@
 package com.sentics.compose_news.presentation.category
 
+import android.os.Parcelable
 import com.sentics.compose_news.domain.model.Article
 import com.sentics.compose_news.domain.model.Source
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class ArticleView(
     val url: String,
     val title: String,
@@ -13,7 +16,7 @@ data class ArticleView(
     val sourceTitle: String,
     val sourceId: String,
     val imageUrl: String
-)
+) : Parcelable
 
 fun Article.toArticleView() = ArticleView(
     url = url,

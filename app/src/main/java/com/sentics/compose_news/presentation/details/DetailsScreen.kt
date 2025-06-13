@@ -24,14 +24,13 @@ import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import com.loc.newsapp.ui.theme.NewsAppTheme
 import com.sentics.compose_news.R
-import com.sentics.compose_news.domain.model.Article
-import com.sentics.compose_news.domain.model.Source
 import com.sentics.compose_news.presentation.Dimen
+import com.sentics.compose_news.presentation.category.ArticleView
 import com.sentics.compose_news.presentation.details.component.DetailsTopBar
 
 @Composable
 fun DetailsScreen(
-    article: Article,
+    article: ArticleView,
     event: (DetailsEvent) -> Unit,
     navigateUp: () -> Unit
 ) {
@@ -72,7 +71,7 @@ fun DetailsScreen(
                 )
         ) {
             AsyncImage(
-                model = ImageRequest.Builder(context).data(article.urlToImage).build(),
+                model = ImageRequest.Builder(context).data(article.imageUrl).build(),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -104,15 +103,16 @@ fun DetailsScreen(
 private fun DetailsScreenPreview() {
     NewsAppTheme {
         DetailsScreen(
-            article = Article(
+            article = ArticleView(
                 author = "John Doe",
                 content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
                 description = "OPIS",
                 publishedAt = "09.06.2025",
-                source = Source(id = "1", name = "bbc"),
+                sourceId = "1",
+                sourceTitle = "bbc",
                 title = "Et harum quidem rerum facilis",
                 url = "https://www.google.com/#q=explicari",
-                urlToImage = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Farticles%2F&psig=AOvVaw1rTfaKwxhaGK01LA9xygRy&ust=1749549057962000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPDj9qKI5I0DFQAAAAAdAAAAABAL"
+                imageUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Farticles%2F&psig=AOvVaw1rTfaKwxhaGK01LA9xygRy&ust=1749549057962000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPDj9qKI5I0DFQAAAAAdAAAAABAL"
             ), event = {}) { }
     }
 }

@@ -13,14 +13,15 @@ fun CategoryScreen(
     state: CategoryState,
     loadMore: () -> Unit
 ) {
-    LazyColumnPager (
+
+    LazyColumnPager(
         modifier = Modifier
             .fillMaxSize()
             .statusBarsPadding(),
         loadMore = loadMore
     ) {
         items(items = state.displayedItems) {
-            ArticleCard(article = it.toArticle(), onClick = {})
+            ArticleCard(article = it, onClick = {})
         }
     }
 }

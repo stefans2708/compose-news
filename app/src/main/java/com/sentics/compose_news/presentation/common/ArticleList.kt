@@ -10,14 +10,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
-import com.sentics.compose_news.domain.model.Article
 import com.sentics.compose_news.presentation.Dimen
+import com.sentics.compose_news.presentation.category.ArticleView
 
 @Composable
 fun ArticleList(
     modifier: Modifier = Modifier,
-    articles: List<Article>,
-    onItemClick: (Article) -> Unit
+    articles: List<ArticleView>,
+    onItemClick: (ArticleView) -> Unit
 ) {
     if (articles.isEmpty()) {
         EmptyScreen()
@@ -39,8 +39,8 @@ fun ArticleList(
 @Composable
 fun ArticleList(
     modifier: Modifier = Modifier,
-    articles: LazyPagingItems<Article>,
-    onItemClick: (Article) -> Unit
+    articles: LazyPagingItems<ArticleView>,
+    onItemClick: (ArticleView) -> Unit
 ) {
     val pageLoadSuccess = handlePagingResult(articles)
 
@@ -61,7 +61,7 @@ fun ArticleList(
 
 @Composable
 fun handlePagingResult(
-    articlesPage: LazyPagingItems<Article>
+    articlesPage: LazyPagingItems<ArticleView>
 ): Boolean {
     val loadState = articlesPage.loadState
     val error = when {

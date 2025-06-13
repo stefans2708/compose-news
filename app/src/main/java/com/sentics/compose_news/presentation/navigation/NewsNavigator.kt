@@ -23,6 +23,7 @@ import com.sentics.compose_news.R
 import com.sentics.compose_news.domain.model.Article
 import com.sentics.compose_news.presentation.bookmark.BookmarkScreen
 import com.sentics.compose_news.presentation.bookmark.BookmarkViewModel
+import com.sentics.compose_news.presentation.category.ArticleView
 import com.sentics.compose_news.presentation.category.CategoryScreen
 import com.sentics.compose_news.presentation.category.CategoryViewModel
 import com.sentics.compose_news.presentation.details.DetailsEvent
@@ -117,7 +118,7 @@ fun NewsNavigator() {
                     Toast.makeText(LocalContext.current, viewModel.messageSideEffect, Toast.LENGTH_SHORT).show()
                     viewModel.onEvent(DetailsEvent.RemoveSideEffect)
                 }
-                navController.previousBackStackEntry?.savedStateHandle?.get<Article?>("article")?.let { article ->
+                navController.previousBackStackEntry?.savedStateHandle?.get<ArticleView?>("article")?.let { article ->
                     DetailsScreen(
                         article = article,
                         event = viewModel::onEvent,
@@ -160,7 +161,7 @@ fun navigateToTab(navController: NavController, route: String) {
     }
 }
 
-private fun navigateToDetails(navController: NavController, article: Article) {
+private fun navigateToDetails(navController: NavController, article: ArticleView) {
     navController.currentBackStackEntry?.savedStateHandle?.set("article", article)
     navController.navigate(Route.DetailsScreen.route)
 }
