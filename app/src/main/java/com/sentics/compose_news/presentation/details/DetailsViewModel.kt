@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.sentics.compose_news.domain.usecase.news.DeleteArticle
 import com.sentics.compose_news.domain.usecase.news.GetArticleByUrl
 import com.sentics.compose_news.domain.usecase.news.UpsertArticle
+import com.sentics.compose_news.presentation.category.toArticle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,10 +29,10 @@ class DetailsViewModel @Inject constructor(
                 viewModelScope.launch {
                     val article = getArticleByUrl(event.article.url)
                     if (article == null) {
-                        upsertArticle(event.article)
+                        upsertArticle(event.article.toArticle())
                         messageSideEffect = "Article Saved"
                     } else {
-                        deleteArticle(event.article)
+                        deleteArticle(event.article.toArticle())
                         messageSideEffect = "Article Deleted"
                     }
                 }

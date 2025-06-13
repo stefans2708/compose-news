@@ -9,8 +9,8 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.sentics.compose_news.domain.model.Article
 import com.sentics.compose_news.presentation.Dimen
+import com.sentics.compose_news.presentation.category.ArticleView
 import com.sentics.compose_news.presentation.common.ArticleList
 import com.sentics.compose_news.presentation.common.SearchBar
 
@@ -18,7 +18,7 @@ import com.sentics.compose_news.presentation.common.SearchBar
 fun SearchScreen(
     state: SearchState,
     event: (SearchEvent) -> Unit,
-    navigateToDetails: (Article) -> Unit
+    navigateToDetails: (ArticleView) -> Unit
 ) {
     Column(
         modifier = Modifier

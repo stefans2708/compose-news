@@ -22,17 +22,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.paging.compose.LazyPagingItems
 import com.sentics.compose_news.R
-import com.sentics.compose_news.domain.model.Article
 import com.sentics.compose_news.presentation.Dimen
+import com.sentics.compose_news.presentation.category.ArticleView
 import com.sentics.compose_news.presentation.common.ArticleList
 import com.sentics.compose_news.presentation.common.SearchBar
-import com.sentics.compose_news.presentation.navigation.Route
 
 @Composable
 fun HomeScreen(
-    articles: LazyPagingItems<Article>,
+    articles: LazyPagingItems<ArticleView>,
     navigateToSearch: () -> Unit,
-    navigateToDetails: (Article) -> Unit,
+    navigateToDetails: (ArticleView) -> Unit,
 ) {
     val titles by remember {
         derivedStateOf {

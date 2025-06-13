@@ -29,11 +29,12 @@ import com.sentics.compose_news.R
 import com.sentics.compose_news.domain.model.Article
 import com.sentics.compose_news.domain.model.Source
 import com.sentics.compose_news.presentation.Dimen
+import com.sentics.compose_news.presentation.category.ArticleView
 
 @Composable
 fun ArticleCard(
     modifier: Modifier = Modifier,
-    article: Article,
+    article: ArticleView,
     onClick: () -> Unit
 ) {
     Row(modifier = modifier.clickable { onClick() }) {
@@ -41,7 +42,7 @@ fun ArticleCard(
             modifier = Modifier
                 .size(Dimen.ImageItem)
                 .clip(MaterialTheme.shapes.medium),
-            model = article.urlToImage,
+            model = article.imageUrl,
             contentScale = ContentScale.Crop,
             placeholder = painterResource(R.drawable.ic_splash),
             contentDescription = null
@@ -61,7 +62,7 @@ fun ArticleCard(
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    text = article.source.name,
+                    text = article.sourceTitle,
                     style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
                     color = colorResource(R.color.body)
                 )
@@ -89,15 +90,16 @@ fun ArticleCard(
 private fun ArticleCardPreview() {
     NewsAppTheme {
         ArticleCard(
-            article = Article(
+            article = ArticleView(
                 author = "",
                 content = "",
                 description = "",
                 publishedAt = "2 hours",
-                source = Source(id = "", name = "BBC"),
+                sourceId = "",
+                sourceTitle = "BBC",
                 title = "Her traint broke down. Her phone died. And then she met her saver in a",
                 url = "",
-                urlToImage = ""
+                imageUrl = ""
             )
         ) { }
     }

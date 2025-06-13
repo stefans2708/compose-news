@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sentics.compose_news.domain.usecase.news.GetLocalArticles
+import com.sentics.compose_news.presentation.category.toArticleView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -25,7 +26,9 @@ class BookmarkViewModel @Inject constructor(
     private fun getArticles() {
         getLocalArticles()
             .onEach {
-                _state.value = _state.value.copy(articles = it.asReversed())
+                _state.value = _state.value.copy(
+                    articles = it.asReversed().map { it.toArticleView() }
+                )
             }
             .launchIn(viewModelScope)
     }
