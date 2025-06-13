@@ -23,6 +23,8 @@ import com.sentics.compose_news.R
 import com.sentics.compose_news.domain.model.Article
 import com.sentics.compose_news.presentation.bookmark.BookmarkScreen
 import com.sentics.compose_news.presentation.bookmark.BookmarkViewModel
+import com.sentics.compose_news.presentation.category.CategoryScreen
+import com.sentics.compose_news.presentation.category.CategoryViewModel
 import com.sentics.compose_news.presentation.details.DetailsEvent
 import com.sentics.compose_news.presentation.details.DetailsScreen
 import com.sentics.compose_news.presentation.details.DetailsViewModel
@@ -43,6 +45,7 @@ fun NewsNavigator() {
             BottomNavigationItem(icon = R.drawable.ic_home, text = "Home"),
             BottomNavigationItem(icon = R.drawable.ic_search, text = "Search"),
             BottomNavigationItem(icon = R.drawable.ic_bookmark, text = "Bookmark"),
+            BottomNavigationItem(icon = R.drawable.ic_preferences, text = "Categories"),
         )
     }
     var selectedItem = rememberSaveable(backStackState) {
@@ -50,6 +53,7 @@ fun NewsNavigator() {
             Route.HomeScreen.route -> 0
             Route.SearchScreen.route -> 1
             Route.BookmarkScreen.route -> 2
+            Route.CategoryScreen.route -> 3
             else -> 0
         }
     }
@@ -57,7 +61,8 @@ fun NewsNavigator() {
         backStackState?.destination?.route in setOf(
             Route.HomeScreen.route,
             Route.SearchScreen.route,
-            Route.BookmarkScreen.route
+            Route.BookmarkScreen.route,
+            Route.CategoryScreen.route
         )
     }
 
@@ -73,6 +78,7 @@ fun NewsNavigator() {
                             0 -> navigateToTab(navController = navController, route = Route.HomeScreen.route)
                             1 -> navigateToTab(navController = navController, route = Route.SearchScreen.route)
                             2 -> navigateToTab(navController = navController, route = Route.BookmarkScreen.route)
+                            3 -> navigateToTab(navController = navController, route = Route.CategoryScreen.route)
                         }
                     }
                 )
@@ -127,6 +133,15 @@ fun NewsNavigator() {
                 BookmarkScreen(
                     state = state,
                     navigateToDetails = { navigateToDetails(navController, it) }
+                )
+            }
+
+            composable(route = Route.CategoryScreen.route) {
+                val viewModel: CategoryViewModel = hiltViewModel()
+
+                CategoryScreen(
+                    state = viewModel.state.value,
+                    loadMore = viewModel::loadPage
                 )
             }
         }

@@ -8,8 +8,9 @@ import com.sentics.compose_news.data.remote.NewsApi
 import com.sentics.compose_news.data.remote.NewsPagingSource
 import com.sentics.compose_news.data.remote.SearchNewsPagingSource
 import com.sentics.compose_news.domain.model.Article
+import com.sentics.compose_news.domain.model.CategoryRequest
 import com.sentics.compose_news.domain.model.MyPage
-import com.sentics.compose_news.domain.model.NewsConfig
+import com.sentics.compose_news.domain.model.PageConfig
 import com.sentics.compose_news.domain.repository.NewsRepository
 import com.sentics.compose_news.util.Constant
 import kotlinx.coroutines.flow.Flow
@@ -57,17 +58,17 @@ class NewsRepositoryImpl(
     override suspend fun getArticle(url: String): Article? =
         newsDao.getArticleByUrl(url)
 
-    override suspend fun getSpecificNews(config: NewsConfig): MyPage<Article> =
+    override suspend fun getSpecificNews(request: CategoryRequest): MyPage<Article> =
         newsApi.getSpecificNews(
-            searchQuery = config.query,
-            page = config.pageToLoad,
-            pageSize = config.pageSize,
-            sources = config.sources.orEmpty(),
-            language = config.language,
+            searchQuery = request.query,
+            page = request.pageToLoad,
+            pageSize = request.pageSize,
+            sources = request.sources,
+            language = request.language,
             apiKey = Constant.API_KEY
         ).let { response ->
             MyPage(
-                page = config.pageToLoad,
+                page = request.pageToLoad,
                 totalCount = response.totalResult,
                 items = response.articles,
             )

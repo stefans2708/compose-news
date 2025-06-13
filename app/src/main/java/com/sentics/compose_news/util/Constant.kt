@@ -8,5 +8,6 @@ object Constant {
     const val BASE_URL = "https://newsapi.org/v2/"
     const val NEWS_DB_NAME = "news_db"
 
+    const val PAGE_SIZE = 20
     val NEWS_SOURCES = listOf("bbc-news", "abc-news", "al-jazzera-english")
 }

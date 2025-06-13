@@ -23,11 +23,11 @@ interface NewsApi {
 
     @GET("everything")
     suspend fun getSpecificNews(
-        @Query("q") searchQuery: String,
         @Query("page") page: Int,
         @Query("pageSize") pageSize: Int,
-        @Query("sources") sources: String,
-        @Query("language") language: String,
+        @Query("q") searchQuery: String?,
+        @Query("sources") sources: String?,
+        @Query("language") language: String?,
         @Query("apiKey") apiKey: String
     ): NewsResponse
 }

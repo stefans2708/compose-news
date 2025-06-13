@@ -2,8 +2,9 @@ package com.sentics.compose_news.domain.repository
 
 import androidx.paging.PagingData
 import com.sentics.compose_news.domain.model.Article
+import com.sentics.compose_news.domain.model.CategoryRequest
 import com.sentics.compose_news.domain.model.MyPage
-import com.sentics.compose_news.domain.model.NewsConfig
+import com.sentics.compose_news.domain.model.PageConfig
 import kotlinx.coroutines.flow.Flow
 
 interface NewsRepository {
@@ -20,5 +21,5 @@ interface NewsRepository {
 
     suspend fun getArticle(url: String): Article?
 
-    suspend fun getSpecificNews(config: NewsConfig): MyPage<Article>
+    suspend fun getSpecificNews(request: CategoryRequest): MyPage<Article>
 }
