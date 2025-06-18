@@ -3,7 +3,11 @@ package com.sentics.compose_news.presentation.category
 import android.os.Parcelable
 import com.sentics.compose_news.domain.model.Article
 import com.sentics.compose_news.domain.model.Source
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @Parcelize
 data class ArticleView(
@@ -16,7 +20,15 @@ data class ArticleView(
     val sourceTitle: String,
     val sourceId: String,
     val imageUrl: String
-) : Parcelable
+) : Parcelable {
+
+    @IgnoredOnParcel
+    val formattedDate =
+        SimpleDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'", Locale.getDefault())
+            .parse(publishedAt)
+            ?.let { date -> SimpleDateFormat("dd.MM. 'at' HH:mm", Locale.getDefault()).format(date) }
+            .orEmpty()
+}
 
 fun Article.toArticleView() = ArticleView(
     url = url,
