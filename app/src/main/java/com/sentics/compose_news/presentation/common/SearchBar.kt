@@ -2,6 +2,7 @@ package com.sentics.compose_news.presentation.common
 
 import android.content.res.Configuration
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -65,6 +66,14 @@ fun SearchBar(
                     tint = colorResource(R.color.body)
                 )
             },
+            trailingIcon = {
+                Icon(
+                    modifier = Modifier.clickable { onValueChange("") },
+                    painter = painterResource(id = R.drawable.ic_close),
+                    contentDescription = null,
+                    tint = colorResource(R.color.body),
+                )
+            },
             placeholder = {
                 Text(
                     text = "Search",
@@ -78,6 +87,7 @@ fun SearchBar(
                 focusedTextColor = if (isSystemInDarkTheme()) Color.White else Color.Black,
                 cursorColor = if (isSystemInDarkTheme()) Color.White else Color.Black,
                 disabledIndicatorColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent,
                 errorIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent
             ),

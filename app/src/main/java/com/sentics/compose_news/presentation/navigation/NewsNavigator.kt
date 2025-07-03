@@ -6,13 +6,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -20,7 +19,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.sentics.compose_news.R
-import com.sentics.compose_news.domain.model.Article
 import com.sentics.compose_news.presentation.bookmark.BookmarkScreen
 import com.sentics.compose_news.presentation.bookmark.BookmarkViewModel
 import com.sentics.compose_news.presentation.category.ArticleView
@@ -139,9 +137,12 @@ fun NewsNavigator() {
 
             composable(route = Route.CategoryScreen.route) {
                 val viewModel: CategoryViewModel = hiltViewModel()
+                val state by viewModel.state.collectAsStateWithLifecycle()
 
                 CategoryScreen(
-                    state = viewModel.state.value,
+                    state = state,
+                    onSearchTextChange = viewModel::onSearchQueryChange,
+                    onSearch = viewModel::searchArticles,
                     loadMore = viewModel::loadPage
                 )
             }

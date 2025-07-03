@@ -27,7 +27,7 @@ The `dev`
 
 - [x] Implement a screen with custom pagination (not using the Paging library)
 
-- [ ] Implement search using existing search bar, but now with observing flow
+- [x] Implement search using existing search bar, but now with observing flow
   - Do not use any composable api in view model
   - Check this example https://github.com/santansarah/city-api-client/blob/search-type-flow/app/src/main/java/com/example/cityapiclient/presentation/search/SearchViewModel.kt
     from this yt video: https://www.youtube.com/watch?v=KxcttMg-JVI
