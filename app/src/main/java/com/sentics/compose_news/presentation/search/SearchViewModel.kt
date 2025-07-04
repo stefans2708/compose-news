@@ -38,7 +38,7 @@ class SearchViewModel @Inject constructor(
         val articles: Flow<PagingData<ArticleView>> =
             searchNews(
                 query = _state.value.searchQuery,
-                sources = Constant.NEWS_SOURCES
+                sources = Constant.NEWS_SOURCES_DEFAULT
             )
                 .map {page -> page.map { it.toArticleView() }}
                 .cachedIn(viewModelScope)

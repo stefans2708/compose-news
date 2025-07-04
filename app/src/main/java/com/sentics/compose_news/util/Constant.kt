@@ -9,5 +9,5 @@ object Constant {
     const val NEWS_DB_NAME = "news_db"
 
     const val PAGE_SIZE = 20
-    val NEWS_SOURCES = listOf("bbc-news", "abc-news", "techcrunch")
+    val NEWS_SOURCES_DEFAULT = listOf("bbc-news", "abc-news", "techcrunch")
 }

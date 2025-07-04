@@ -36,10 +36,13 @@ fun CategoryScreen(
     navigateToDetails: (ArticleView) -> Unit,
     onSearchTextChange: (String) -> Unit,
     onBottomSheetTrigger: () -> Unit,
+    onSortingCriteriaSelect: (String) -> Unit,
+    onLanguageSelect: (String) -> Unit,
+    onSourceSelect: (String) -> Unit,
+    onAllSourcesTrigger: () -> Unit,
     onSearch: () -> Unit,
     loadMore: () -> Unit
 ) {
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -89,7 +92,13 @@ fun CategoryScreen(
             ModalBottomSheet(
                 onDismissRequest = onBottomSheetTrigger
             ) {
-                CategorySettingsSheet(state = CategorySettingsState())
+                CategorySettingsSheet(
+                    state = state.bottomSheetState,
+                    onSortingCriteriaSelect = onSortingCriteriaSelect,
+                    onLanguageSelect = onLanguageSelect,
+                    onSourceSelect = onSourceSelect,
+                    onAllSourcesTrigger = onAllSourcesTrigger
+                )
             }
         }
     }

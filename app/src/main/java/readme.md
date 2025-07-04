@@ -43,3 +43,6 @@ The `dev`
   1. No items to load
   2. No more items (last page)
   3. No internet etc.
+
+- [ ] Fixes:
+  1. On screen start, api called twice

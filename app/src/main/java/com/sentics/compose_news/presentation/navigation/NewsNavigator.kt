@@ -145,7 +145,11 @@ fun NewsNavigator() {
                     onSearchTextChange = viewModel::onSearchQueryChange,
                     onSearch = viewModel::searchArticles,
                     loadMore = viewModel::loadPage,
-                    onBottomSheetTrigger = viewModel::bottomSheetTrigger
+                    onBottomSheetTrigger = viewModel::bottomSheetTrigger,
+                    onSortingCriteriaSelect = viewModel::onSortingCriteriaSelect,
+                    onLanguageSelect = viewModel::onLanguageSelect,
+                    onSourceSelect = viewModel::onSourceSelect,
+                    onAllSourcesTrigger = viewModel::onAllSourcesTrigger,
                 )
             }
         }

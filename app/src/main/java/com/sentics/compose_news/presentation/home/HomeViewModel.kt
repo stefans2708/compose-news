@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
-import com.sentics.compose_news.domain.model.Article
 import com.sentics.compose_news.domain.usecase.news.GetNews
 import com.sentics.compose_news.presentation.category.ArticleView
 import com.sentics.compose_news.presentation.category.toArticleView
@@ -21,7 +20,7 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     val news: Flow<PagingData<ArticleView>> =
-        getNews(Constant.NEWS_SOURCES)
+        getNews(Constant.NEWS_SOURCES_DEFAULT)
             .map { page -> page.map { it.toArticleView() } }
             .cachedIn(viewModelScope)
 

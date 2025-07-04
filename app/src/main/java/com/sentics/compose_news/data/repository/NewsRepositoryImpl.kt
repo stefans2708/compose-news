@@ -64,6 +64,7 @@ class NewsRepositoryImpl(
             page = request.pageToLoad,
             pageSize = request.pageSize,
             sources = request.sources,
+            sortBy = request.sortBy,
             language = request.language,
             apiKey = Constant.API_KEY
         ).let { response ->

@@ -1,6 +1,5 @@
 package com.sentics.compose_news.presentation.category
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,8 +12,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.shape.CornerSize
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Check
@@ -26,23 +25,33 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.loc.newsapp.ui.theme.NewsAppTheme
 import com.sentics.compose_news.presentation.Dimen
 
 @Composable
 fun CategorySettingsSheet(
     modifier: Modifier = Modifier,
+    onSortingCriteriaSelect: (String) -> Unit,
+    onLanguageSelect: (String) -> Unit,
+    onSourceSelect: (String) -> Unit,
+    onAllSourcesTrigger: () -> Unit,
     state: CategorySettingsState
 ) {
+    var showSortingOptions by remember { mutableStateOf(false) }
+
     Column(
         modifier = modifier
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
             .padding(Dimen.PaddingMedium1)
     ) {
         Text(
@@ -70,7 +79,7 @@ fun CategorySettingsSheet(
                         } else null
                     },
                     selected = language == state.language,
-                    onClick = {}
+                    onClick = { onLanguageSelect.invoke(language) }
                 )
             }
         }
@@ -116,7 +125,9 @@ fun CategorySettingsSheet(
 
         Spacer(modifier = Modifier.height(Dimen.PaddingMedium1))
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { showSortingOptions = true },
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
@@ -129,11 +140,6 @@ fun CategorySettingsSheet(
             ) {
                 Text(
                     modifier = Modifier
-                        .border(
-                            width = 1.dp,
-                            color = MaterialTheme.colorScheme.primary,
-                            shape = RoundedCornerShape(corner = CornerSize(4.dp))
-                        )
                         .padding(Dimen.PaddingExtraSmall),
                     text = state.sortingCriteria,
                     style = MaterialTheme.typography.titleLarge,
@@ -143,8 +149,10 @@ fun CategorySettingsSheet(
                     contentDescription = null
                 )
                 DropdownMenu(
-                    expanded = false,
-                    onDismissRequest = {}
+                    expanded = showSortingOptions,
+                    onDismissRequest = {
+                        showSortingOptions = false
+                    }
                 ) {
                     state.availableSortingCriteria.forEach { criteria ->
                         DropdownMenuItem(
@@ -154,7 +162,10 @@ fun CategorySettingsSheet(
                                     style = MaterialTheme.typography.bodySmall
                                 )
                             },
-                            onClick = {}
+                            onClick = {
+                                onSortingCriteriaSelect(criteria)
+                                showSortingOptions = false
+                            }
                         )
                     }
                 }
@@ -162,13 +173,27 @@ fun CategorySettingsSheet(
         }
 
         Spacer(modifier = Modifier.height(Dimen.PaddingMedium1))
-        Text(
-            text = "Sources",
-            style = MaterialTheme.typography.headlineSmall,
-            fontWeight = FontWeight.Bold
-        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { showSortingOptions = true },
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = "Sources",
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                modifier = Modifier.clickable(onClick = onAllSourcesTrigger),
+                text = "All",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold
+            )
+        }
         FlowRow(modifier = Modifier.wrapContentHeight()) {
-            state.availableSources.forEach { source ->
+            availableSources.forEach { source ->
                 val selected = source in state.sources
 
                 FilterChip(
@@ -189,7 +214,7 @@ fun CategorySettingsSheet(
                         } else null
                     },
                     selected = selected,
-                    onClick = {}
+                    onClick = { onSourceSelect(source) }
                 )
             }
         }
@@ -202,10 +227,11 @@ fun CategorySettingsSheet(
 private fun CategorySettingsSheetPreview() {
     NewsAppTheme {
         CategorySettingsSheet(
-            state = CategorySettingsState(
-                language = "fr",
-                sortingCriteria = "relevancy"
-            )
+            state = CategorySettingsState(),
+            onSortingCriteriaSelect = {},
+            onLanguageSelect = {},
+            onSourceSelect = {},
+            onAllSourcesTrigger = {},
         )
     }
 }

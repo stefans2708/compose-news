@@ -27,6 +27,7 @@ interface NewsApi {
         @Query("pageSize") pageSize: Int,
         @Query("q") searchQuery: String?,
         @Query("sources") sources: String?,
+        @Query("sortBy") sortBy: String?,
         @Query("language") language: String?,
         @Query("apiKey") apiKey: String
     ): NewsResponse

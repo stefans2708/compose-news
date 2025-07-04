@@ -5,5 +5,6 @@ data class CategoryRequest(
     val pageSize: Int = 20,
     val query: String? = null,
     val sources: String? = null,
+    val sortBy: String? = null,
     val language: String? = null
 )
