@@ -29,6 +29,8 @@ interface NewsApi {
         @Query("sources") sources: String?,
         @Query("sortBy") sortBy: String?,
         @Query("language") language: String?,
+        @Query("from") fromDate: String?,
+        @Query("to") toDate: String?,
         @Query("apiKey") apiKey: String
     ): NewsResponse
 }

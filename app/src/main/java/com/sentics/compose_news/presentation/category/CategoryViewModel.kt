@@ -132,6 +132,15 @@ class CategoryViewModel @Inject constructor(
             old.copy(sources = newSources)
         }
     }
+
+    fun onDateRangeSelect(range: Pair<String?, String?>) {
+        _settings.update { old ->
+            old.copy(
+                dateFrom = range.first,
+                dateTo = range.second,
+            )
+        }
+    }
     // endregion
 
     private suspend fun onLoadNextPage(config: PageConfig) {
@@ -148,9 +157,11 @@ class CategoryViewModel @Inject constructor(
 
     private fun getCategoryRequest(config: PageConfig) = CategoryRequest(
         pageToLoad = config.pageToLoad,
+        query = _searchText.value,
         sources = _settings.value.sources.joinToString(","),
         sortBy = _settings.value.sortingCriteria,
         language = _settings.value.language,
-        query = _searchText.value
+        fromDate = _settings.value.dateFrom,
+        toDate = _settings.value.dateTo
     )
 }

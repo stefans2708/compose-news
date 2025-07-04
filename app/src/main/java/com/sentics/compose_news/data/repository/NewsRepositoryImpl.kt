@@ -66,6 +66,8 @@ class NewsRepositoryImpl(
             sources = request.sources,
             sortBy = request.sortBy,
             language = request.language,
+            fromDate = request.fromDate,
+            toDate = request.toDate,
             apiKey = Constant.API_KEY
         ).let { response ->
             MyPage(

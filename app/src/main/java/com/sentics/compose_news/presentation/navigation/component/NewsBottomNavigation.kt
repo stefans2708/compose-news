@@ -77,8 +77,9 @@ private fun NewsBottomNavigationPreview() {
                 BottomNavigationItem(icon = R.drawable.ic_home, text = "Home"),
                 BottomNavigationItem(icon = R.drawable.ic_search, text = "Search"),
                 BottomNavigationItem(icon = R.drawable.ic_bookmark, text = "Bookmark"),
+                BottomNavigationItem(icon = R.drawable.ic_network, text = "Categories"),
             ),
-            selected = 0,
+            selected = 2,
             onItemSelected = {}
         )
     }

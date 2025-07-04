@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.sentics.compose_news.domain.model.Article
 
-@Database(entities = [Article::class], version = 2)
+@Database(entities = [Article::class], version = 3)
 @TypeConverters(NewsTypeConverter::class)
 abstract class NewsDatabase() : RoomDatabase() {
 

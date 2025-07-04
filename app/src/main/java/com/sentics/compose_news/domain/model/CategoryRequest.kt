@@ -6,5 +6,7 @@ data class CategoryRequest(
     val query: String? = null,
     val sources: String? = null,
     val sortBy: String? = null,
-    val language: String? = null
+    val language: String? = null,
+    val fromDate: String? = null,
+    val toDate: String? = null
 )

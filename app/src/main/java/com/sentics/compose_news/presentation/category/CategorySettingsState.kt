@@ -3,8 +3,8 @@ package com.sentics.compose_news.presentation.category
 data class CategorySettingsState(
     val language: String = "en",
     val sortingCriteria: String = "relevancy",
-    val dateFrom: String = "",
-    val dateTo: String = "",
+    val dateFrom: String? = null,
+    val dateTo: String? = null,
     val sources: List<String> = availableSources
 )
 

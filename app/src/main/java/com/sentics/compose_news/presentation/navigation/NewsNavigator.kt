@@ -150,6 +150,7 @@ fun NewsNavigator() {
                     onLanguageSelect = viewModel::onLanguageSelect,
                     onSourceSelect = viewModel::onSourceSelect,
                     onAllSourcesTrigger = viewModel::onAllSourcesTrigger,
+                    onDateRangeSelect = viewModel::onDateRangeSelect,
                 )
             }
         }

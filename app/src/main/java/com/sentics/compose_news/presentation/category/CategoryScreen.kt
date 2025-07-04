@@ -40,6 +40,7 @@ fun CategoryScreen(
     onLanguageSelect: (String) -> Unit,
     onSourceSelect: (String) -> Unit,
     onAllSourcesTrigger: () -> Unit,
+    onDateRangeSelect: (Pair<String?, String?>) -> Unit,
     onSearch: () -> Unit,
     loadMore: () -> Unit
 ) {
@@ -97,7 +98,8 @@ fun CategoryScreen(
                     onSortingCriteriaSelect = onSortingCriteriaSelect,
                     onLanguageSelect = onLanguageSelect,
                     onSourceSelect = onSourceSelect,
-                    onAllSourcesTrigger = onAllSourcesTrigger
+                    onAllSourcesTrigger = onAllSourcesTrigger,
+                    onDateRangeSelect = onDateRangeSelect
                 )
             }
         }

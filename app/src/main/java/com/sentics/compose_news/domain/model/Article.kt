@@ -13,5 +13,5 @@ data class Article(
     @ColumnInfo(name = "published_at") val publishedAt: String,
     val source: Source,
     val title: String,
-    @ColumnInfo(name = "image_url") val urlToImage: String
+    @ColumnInfo(name = "image_url") val urlToImage: String?
 )

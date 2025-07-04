@@ -1,5 +1,6 @@
 package com.sentics.compose_news.presentation.category
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,6 +14,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -34,8 +37,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.loc.newsapp.ui.theme.NewsAppTheme
 import com.sentics.compose_news.presentation.Dimen
+import com.sentics.compose_news.presentation.common.DateRangePickerDialog
 
 @Composable
 fun CategorySettingsSheet(
@@ -44,9 +49,11 @@ fun CategorySettingsSheet(
     onLanguageSelect: (String) -> Unit,
     onSourceSelect: (String) -> Unit,
     onAllSourcesTrigger: () -> Unit,
+    onDateRangeSelect: (Pair<String?, String?>) -> Unit,
     state: CategorySettingsState
 ) {
     var showSortingOptions by remember { mutableStateOf(false) }
+    var showDateRangePicker by remember { mutableStateOf(false) }
 
     Column(
         modifier = modifier
@@ -85,41 +92,53 @@ fun CategorySettingsSheet(
         }
 
         Spacer(modifier = Modifier.height(Dimen.PaddingSmall))
-        Text(
-            text = "Date",
-            style = MaterialTheme.typography.headlineSmall,
-            fontWeight = FontWeight.Bold
-        )
-        Spacer(modifier = Modifier.height(Dimen.PaddingSmall))
-        Row(
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .clickable {},
-            horizontalArrangement = Arrangement.SpaceBetween
+                .background(
+                    color = MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.4f),
+                    shape = RoundedCornerShape(corner = CornerSize(6.dp))
+                )
+                .padding(Dimen.PaddingSmall)
+                .clickable { showDateRangePicker = true }
         ) {
             Text(
-                text = "From:",
-                style = MaterialTheme.typography.bodyMedium,
+                text = "Date",
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold
             )
-            Text(
-                text = "Select date",
-                style = MaterialTheme.typography.bodyMedium.copy(color = Color.Gray),
-            )
+            Spacer(modifier = Modifier.height(Dimen.PaddingSmall))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "From:",
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+                Text(
+                    text = state.dateFrom.orEmpty(),
+                    style = MaterialTheme.typography.bodyMedium.copy(color = Color.Gray),
+                )
+            }
+            Spacer(modifier = Modifier.height(Dimen.PaddingSmall))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "To:",
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+                Text(
+                    text = state.dateTo.orEmpty(),
+                    style = MaterialTheme.typography.bodyMedium.copy(color = Color.Gray),
+                )
+            }
         }
-        Spacer(modifier = Modifier.height(Dimen.PaddingSmall))
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable {},
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(
-                text = "To:",
-                style = MaterialTheme.typography.bodyMedium,
-            )
-            Text(
-                text = "Select date",
-                style = MaterialTheme.typography.bodyMedium.copy(color = Color.Gray),
+        if (showDateRangePicker) {
+            DateRangePickerDialog(
+                onDateRangeSelected = onDateRangeSelect,
+                onDismiss = { showDateRangePicker = false }
             )
         }
 
@@ -142,7 +161,7 @@ fun CategorySettingsSheet(
                     modifier = Modifier
                         .padding(Dimen.PaddingExtraSmall),
                     text = state.sortingCriteria,
-                    style = MaterialTheme.typography.titleLarge,
+                    style = MaterialTheme.typography.titleMedium,
                 )
                 Icon(
                     imageVector = Icons.Default.ArrowDropDown,
@@ -232,6 +251,7 @@ private fun CategorySettingsSheetPreview() {
             onLanguageSelect = {},
             onSourceSelect = {},
             onAllSourcesTrigger = {},
+            onDateRangeSelect = {},
         )
     }
 }

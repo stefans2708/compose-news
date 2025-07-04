@@ -32,12 +32,11 @@ The `dev`
   - Check this example https://github.com/santansarah/city-api-client/blob/search-type-flow/app/src/main/java/com/example/cityapiclient/presentation/search/SearchViewModel.kt
     from this yt video: https://www.youtube.com/watch?v=KxcttMg-JVI
 
-- [ ] Create a bottom dialog screen for configuring:
-  - Categories (country and some other category if available on API)
-  - Filters should be visible as pills after application and can be dismissed separately on "x"
-  - Item UI
-    1. standard full-width items
-    2. items in columns (maybe even option to configure a number of columns i.e. 2 or 3)
+- [x] Create a bottom dialog screen for configuring:
+  - Language
+  - Date (from/to)
+  - Sorting (relevancy, popularity, publishedAt)
+  - Sources
 
 - [ ] Additional - Handle empty states:
   1. No items to load

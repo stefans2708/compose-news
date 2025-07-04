@@ -39,7 +39,7 @@ fun Article.toArticleView() = ArticleView(
     publishedAt = publishedAt,
     sourceId = source.id,
     sourceTitle = source.name,
-    imageUrl = urlToImage
+    imageUrl = urlToImage.orEmpty()
 )
 
 fun ArticleView.toArticle() = Article(
