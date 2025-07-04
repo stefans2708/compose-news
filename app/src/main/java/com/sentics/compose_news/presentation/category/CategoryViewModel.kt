@@ -30,14 +30,16 @@ class CategoryViewModel @Inject constructor(
     private val getSpecificNews: GetSpecificNews
 ) : ViewModel() {
 
+    private val _showBottomSheet = MutableStateFlow(false)
     private val _searchText = MutableStateFlow("")
     private val _articles = MutableStateFlow<List<ArticleView>>(listOf())
 
     val state: StateFlow<CategoryState> =
-        combine(_searchText, _articles) { query, articles ->
+        combine(_searchText, _articles, _showBottomSheet) { query, articles, showBottomSheet ->
             CategoryState(
                 searchText = query,
-                displayedItems = articles
+                displayedItems = articles,
+                bottomSheetVisible = showBottomSheet
             )
         }.stateIn(
             viewModelScope,
@@ -81,6 +83,10 @@ class CategoryViewModel @Inject constructor(
         _articles.value = listOf()
         pager.reset()
         loadPage()
+    }
+
+    fun bottomSheetTrigger() {
+        _showBottomSheet.value = !_showBottomSheet.value
     }
 
     private suspend fun onLoadNextPage(config: PageConfig) {

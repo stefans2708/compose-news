@@ -44,10 +44,10 @@ fun NewsNavigator() {
             BottomNavigationItem(icon = R.drawable.ic_home, text = "Home"),
             BottomNavigationItem(icon = R.drawable.ic_search, text = "Search"),
             BottomNavigationItem(icon = R.drawable.ic_bookmark, text = "Bookmark"),
-            BottomNavigationItem(icon = R.drawable.ic_preferences, text = "Categories"),
+            BottomNavigationItem(icon = R.drawable.ic_network, text = "Categories"),
         )
     }
-    var selectedItem = rememberSaveable(backStackState) {
+    val selectedItem = rememberSaveable(backStackState) {
         when (backStackState?.destination?.route) {
             Route.HomeScreen.route -> 0
             Route.SearchScreen.route -> 1
@@ -83,8 +83,8 @@ fun NewsNavigator() {
                 )
             }
         },
-    ) {
-        val bottomPadding = it.calculateBottomPadding()
+    ) { paddingValues ->
+        val bottomPadding = paddingValues.calculateBottomPadding()
         NavHost(
             navController = navController,
             startDestination = Route.HomeScreen.route,
@@ -141,9 +141,11 @@ fun NewsNavigator() {
 
                 CategoryScreen(
                     state = state,
+                    navigateToDetails = { navigateToDetails(navController, it) },
                     onSearchTextChange = viewModel::onSearchQueryChange,
                     onSearch = viewModel::searchArticles,
-                    loadMore = viewModel::loadPage
+                    loadMore = viewModel::loadPage,
+                    onBottomSheetTrigger = viewModel::bottomSheetTrigger
                 )
             }
         }
