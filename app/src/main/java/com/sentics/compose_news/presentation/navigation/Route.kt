@@ -12,4 +12,6 @@ sealed class Route(
     data object NewsNavigation : Route(route = "newsNavigation")
     data object NewsNavigatorScreen : Route(route = "newsNavigator")
     data object CategoryScreen : Route(route = "category")
+
+    data object ContactBookScreen : Route(route = "contactBook")
 }

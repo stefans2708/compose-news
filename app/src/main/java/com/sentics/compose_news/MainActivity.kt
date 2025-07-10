@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.loc.newsapp.ui.theme.NewsAppTheme
+import com.sentics.compose_news.presentation.contacts.navigation.ContactNavGraph
 import com.sentics.compose_news.presentation.navigation.NavGraph
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,7 +26,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             NewsAppTheme {
-                NavGraph(startDestination = viewModel.startDestination)
+                ContactNavGraph()
             }
         }
     }
